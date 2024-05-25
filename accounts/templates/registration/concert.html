@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concerts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #444444;
+        }
+        .navbar {
+            background-color: #222222; /* Dark gray navbar background */
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .card {
+            background-color: #fff; /* White background for cards */
+            border: 1px solid rgba(0, 0, 0, 0.125); /* Add a border to cards */
+            border-radius: 0.25rem; /* Rounded corners for cards */
+            margin-bottom: 20px; /* Add margin between cards */
+            
+        }
+        .card-header {
+            background-color: #333333; /* Blue header for cards */
+            color: #fff; /* White text for header */
+            text-align: center; 
+        }
+        .card-title {
+            margin-bottom: 0; /* Remove margin bottom from card title */
+        }
+        .card-body {
+            padding: 1rem; /* Add padding to card body */
+            background-color:#FFFFFF;
+        }
+        
+        .table {
+            border-collapse: collapse; /* Collapse table borders */
+            width: 100%; /* Full width table */
+             
+        }
+        .table th,
+        .table td {
+            border: 2px solid #dee2e6; /* Add borders to table cells */
+            padding: 8px; /* Add padding to table cells */
+            text-align: center; /* Left-align text in table cells */
+        }
+        .table th {
+            background-color: #7E2553; /* Light gray background for table header */
+            color:#fff;
+            text-align: center;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color:#FFFFFF; 
+            
+        }
+        .table-striped tbody tr:nth-of-type(even){
+            background-color:#FFFFFF; 
+            
+        }
+        .table-striped tbody tr:nth-of-type(odd):hover {
+            background-color:#252525; 
+            color:#FFFFFF;
+            font-weight:bold;
+            
+        }
+        .table-striped tbody tr:nth-of-type(even):hover {
+            background-color:#252525; 
+            color:#FFFFFF;
+            font-weight:bold;
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand btn btn-danger" href="{% url 'dashboard' %}">Back</a>
+        <div class="navbar-text" style="margin-left: auto; margin-right: auto; color: #FFFFFF;">
+            <h1>Concert Dates</h1>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        
+        {% regroup concerts by place as concerts_by_place %}
+        {% for place_group in concerts_by_place %}
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">{{ place_group.grouper }}</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Artists</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for concert in place_group.list %}
+                                <tr>
+                                    <td>
+                                        {% for artist in concert.artists.all %}
+                                            {{ artist.name }}
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{ concert.date }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

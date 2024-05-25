@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConcertCraze</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-image:url("https://images.unsplash.com/photo-1501612780327-45045538702b?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); 
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            background-color:#FBF9F1;
+        }
+        
+        .card {
+            margin-bottom: 200px;
+            margin-top: 200px;
+            text-align: center;
+            background-color:#393E46;
+            color: #fff;
+            border-radius: 10px;
+            animation: slideIn 1s forwards; /* Animation */
+        }
+
+        /* Animation Keyframes */
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-primary{
+            background-color:#BBE1FA;
+            color:#000001;
+        }
+
+        /* Beautiful navbar color combination */
+        .navbar-custom {
+            background-color:#222222; /* Dark blue */
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #BBE1FA; /* Light blue */
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #FFFFFF; /* Black */
+        }
+
+        .navbar-custom .navbar-toggler-icon {
+            background-color: #BBE1FA; /* Light blue */
+        }
+
+        /* Increase font size of <i> */
+        .fa-icon {
+            font-size: 24px; /* Adjust as needed */
+        }
+        a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color:#BBE1FA; 
+            text-decoration:none; 
+            cursor:pointer;  
+        }
+       
+        @keyframes slideIn {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+
+        .welcome-text {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            color: #FFFFFF;
+            animation: slideIn 2s ease-in-out;
+        }
+        i:hover{
+            color:#FF004D!important;
+        
+        }
+        .btn{
+            background-color:#FF004D!important;
+            color:#FFFFFF;
+        }
+        .btn:hover{
+            background-color:#BBE1FA!important;
+            color:#FF004D!important;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <div class="welcome-text">Welcome {{username}} to ConcertCraze</div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-circle fa-icon" style="color: #BBE1FA; font-size: 28px;">  {{username}} </i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item">Username:{{ username }}</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'home' %}">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid d-flex justify-content-around mt-5">
+    <div class="card" style="width:30rem;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1521337706264-a414f153a5ed?q=80&w=2880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="100px" height="400px">
+        <div class="card-body">
+            <h5 class="card-title">Artists</h5>
+            <a href="{% url 'art' %}" class="btn">Visit Artists</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 30rem;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="100px" height="400px">
+        <div class="card-body">
+            <h5 class="card-title">Songs</h5>
+            <a href="{% url 'song_list' %}" class="btn">Visit Songs</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 30rem;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="100px" height="400px">
+        <div class="card-body">
+            <h5 class="card-title">Concert Dates</h5>
+            <a href="{% url 'concert' %}" class="btn">Visit Concert Dates</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS, jQuery, and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

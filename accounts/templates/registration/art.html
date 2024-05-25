@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Artists</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    
+    <style>
+        /* Custom CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #444444; /* Light gray background */
+           
+        }
+        .navbar {
+            background-color: #222222; /* Dark gray navbar background */
+            
+        }
+        .navbar-brand {
+            color: #FFFFFF; /* White color for navbar brand */
+            margin-right:750px; /* Push the brand to the left */
+        }
+        .navbar-brand:hover {
+            color: #FFFFFF; /* Black color on hover */
+        }
+       
+        .artist-card {
+            margin-bottom: 30px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff; /* White background for cards */
+        }
+        .artist-card:hover {
+            margin-bottom: 30px;
+            border-radius: 10px;
+            background-color: #E8C4C4; /* White background for cards */
+        }
+        .artist-card img {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            height: 250px;
+            width: 250px;
+            padding-top: 5px;
+            text-align: center;
+            object-fit: cover;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .artist-card .card-body {
+            padding: 30px;
+            text-align: center;
+        }
+        .artist-card h5.card-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #343a40; /* Dark gray color for card titles */
+        }
+        .artist-card p.card-text {
+            color: #000001; /* Medium gray color for card text */
+        }
+
+      
+        .btn-primary {
+            background-color: #007bff; /* Blue color for primary button */
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue color on hover */
+            border-color: #0056b3;
+        }
+        .scrollable-row {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        /* Add horizontal line to distinguish each row */
+        .row-divider {
+            border-bottom: 2px solid #FFFFFF; /* Increase the thickness of the border */
+            margin-bottom: 20px;
+            margin-top: 20px;
+            padding-bottom: 20px;
+        }
+        
+        
+        /* Style pagination */
+        .pagination {
+            justify-content: center;
+        }
+        /* Custom container styles */
+        .row-container {
+            margin-bottom: 20px;
+        }
+    
+        .artist-card:hover {
+            transform: translateY(-2px); /* Move the card slightly upwards on hover */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Add a shadow effect on hover */
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand btn btn-danger" href="{% url 'dashboard' %}">Back</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+        </button>
+        <div class="navbar-text" style="margin-right:auto; text-align: center; color: #FFFFFF;">
+            <h1>Artists</h1>
+        </div>
+    </nav>
+    
+    
+    
+    <div class="container mt-5">
+      
+        <!-- English Row -->
+        <div class="container-fluid mb-4 english-row row-container">
+            <h2 class="text-center text-white mb-3">English</h2>
+            <div id="englishRow" class="row scrollable-row row-divider"> <!-- Added row-divider class -->
+                <!-- Dynamic cards will be added here -->
+            </div>
+        </div>
+    
+        <!-- Hindi Row -->
+        <div class="container-fluid mb-4 hindi-row row-container">
+            <h2 class="text-center text-white  mb-3 song">Hindi</h2>
+            <div id="hindiRow" class="row scrollable-row row-divider"> <!-- Added row-divider class -->
+                <!-- Dynamic cards will be added here -->
+            </div>
+        </div>
+    
+        <!-- Kannada Row -->
+        <div class="container-fluid kannada-row row-container">
+            <h2 class="text-center text-white  mb-3">Kannada</h2>
+            <div id="kannadaRow" class="row scrollable-row row-divider"> <!-- Added row-divider class -->
+                <!-- Dynamic cards will be added here -->
+            </div>
+        </div>
+    </div>
+
+<!-- Bootstrap JS, jQuery, and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script>
+   
+    const englishArtists = [
+        { name: "Ed Sheeran", description: "English singer-songwriter, pop music icon.", imageUrl: "https://e1.pxfuel.com/desktop-wallpaper/918/281/desktop-wallpaper-ed-sheeran-b-w-exclusive-ed-sheeran.jpg" },
+        { name: "Michael Buble", description: "Canadian crooner with jazz influences.", imageUrl: "https://wallpapercave.com/wp/wp2253070.jpg" },
+        { name: "Adele", description: "Soulful,powerful and chart-topping singer.", imageUrl: "https://c4.wallpaperflare.com/wallpaper/197/882/390/adele-singer-brunette-women-wallpaper-preview.jpg" },
+    ];
+
+    const hindiArtists = [
+        // Adding Hindi artists data here
+        { name: "Amaal Mallik", description: "Talented Hindi singer-songwriter.", imageUrl: "https://www.dailypioneer.com/uploads/2019/story/images/big/amaal-mallik-disses-sonakshi-sinha-as-a-singer-2019-10-18.jpg" },
+        { name: "A. R. Rahman", description: "Renowned Indian composer and musician.", imageUrl: "https://wallpapercave.com/wp/wp6373917.jpg" },
+        { name: "Shreya Ghoshal", description: "Versatile Indian playback sensation.", imageUrl: "https://blackhattalent.com/wp-content/uploads/2023/08/Shreya-Ghoshal5-scaled.jpg" },
+
+    ];
+
+    const kannadaArtists = [
+        // Adding Kannada artists data here
+        { name: "Sanjith Hegde", description: "Talented Kannada playback singer.", imageUrl: "https://wallpapercave.com/wp/wp8070282.jpg" },
+        { name: "Vasuki Vaibhav", description: "Innovative Kannada music composer.", imageUrl: "https://wallpapercave.com/wp/wp9202620.jpg" },
+        { name: "Rahul Dixit", description: "Energetic Kannada music artist.", imageUrl: "https://timesofindia.indiatimes.com/photo/msid-77679280/77679280.jpg?resizemode=4" },
+
+    ];
+
+    // Function to generate cards for a specific row
+    function generateCards(rowId, artists) {
+        const row = document.getElementById(rowId);
+        row.innerHTML = ""; // Clear existing content
+
+        artists.forEach(artist => {
+            const cardHtml = `
+                <div class="col-lg-4">
+                    <div class="card artist-card">
+                        <img src="${artist.imageUrl}" class="card-img-top rounded-circle" alt="Artist Image">
+                        <div class="card-body">
+                            <h5 class="card-title">${artist.name}</h5>
+                            <p class="card-text">${artist.description}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            row.innerHTML += cardHtml;
+        });
+    }
+
+    // Generate dynamic cards for English, Hindi, and Kannada rows
+    generateCards("englishRow", englishArtists);
+    generateCards("hindiRow", hindiArtists);
+    generateCards("kannadaRow", kannadaArtists);
+</script>
+</body>
+</html>

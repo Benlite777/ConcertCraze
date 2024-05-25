@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <style>
+        .navbar {
+            background-color: #222222; /* Dark gray navbar background */
+            
+        }
+        body{
+            background-color:#444444;
+
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+       
+        .title {
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        .artist-name {
+            color: #FFFFFF;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .artist-name:hover {
+            color: #FF004D;
+            margin-bottom: 10px;
+        }
+        .list-group-item {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #333;
+            width:100%;
+            font-weight: bold;
+        }
+        .list-group-item:hover {
+            background-color: #222222;
+            color: #FFFFFF;
+            font-weight: bold;
+            
+            width:100%;
+        }
+    </style>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand btn btn-danger" href="{% url 'dashboard' %}">Back</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+        </button>
+        <div class="navbar-text" style="margin-left:650px; text-align: center; color: #FFFFFF;">
+            <h1>List of Songs</h1>
+        </div>
+    </nav>
+
+    <div class="container">
+        <br>
+        <!-- Loop through each artist -->
+        {% regroup songs by artist as artist_list %}
+        {% for artist_group in artist_list %}
+        <div class="mb-4">
+            <h2 class="artist-name">{{ artist_group.grouper }}</h2>
+            <ul class="list-group">
+                <!-- Loop through songs by the current artist -->
+                {% for item in artist_group.list %}
+                    <li class="list-group-item">{{ item.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
